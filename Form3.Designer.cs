@@ -334,7 +334,7 @@
             // cmbSehir
             // 
             cmbSehir.FormattingEnabled = true;
-            cmbSehir.Items.AddRange(new object[] { "Adana", "Ankara", "Antalya", "Bursa", "Eskişehir", "Gaziantep", "İstanbul (Anadolu)", "İstanbul (Avrupa)", "İzmir", "Kayseri", "Kocaeli", "Konya", "Mersin", "Samsun", "Trabzon" });
+            cmbSehir.Items.AddRange(new object[] { "Adana", "Ankara", "Antalya", "Bursa", "Eskişehir", "Gaziantep", "İstanbul (Anadolu)", "İstanbul (Avrupa)", "İzmir", "Kayseri", "Kocaeli", "Konya", "Mersin", "Samsun", "Şanlıurfa", "Trabzon" });
             cmbSehir.Location = new Point(210, 66);
             cmbSehir.Margin = new Padding(4, 3, 4, 3);
             cmbSehir.Name = "cmbSehir";

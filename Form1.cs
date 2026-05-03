@@ -1,6 +1,5 @@
 using System;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace EmlakOfisiPortfoy
 {
@@ -19,6 +18,7 @@ namespace EmlakOfisiPortfoy
             if (kullanici == "admin" && sifre == "1234")
             {
                 MessageBox.Show("Giriş başarılı!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 Form2 panel = new Form2();
                 panel.Show();
 
@@ -40,6 +40,11 @@ namespace EmlakOfisiPortfoy
             }
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -53,27 +58,6 @@ namespace EmlakOfisiPortfoy
         private void txtKullanici_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            // Eğer şifre gizliyse (yani içindeki karakter '\0' değilse)
-            if (txtSifre.PasswordChar != '\0')
-            {
-                // Şifreyi görünür yap (karakteri sıfırla)
-                txtSifre.PasswordChar = '\0';
-
-                // İkonu 'açık göz' resmiyle değiştir
-                pictureBox1.Image = Properties.Resources.acik_goz;
-            }
-            else
-            {
-                // Şifreyi tekrar gizle (Koyu yuvarlak nokta işareti koy)
-                txtSifre.PasswordChar = '•';
-
-                // İkonu tekrar 'kapalı göz' resmiyle değiştir
-                pictureBox1.Image = Properties.Resources.kapali_goz;
-            }
         }
     }
 }

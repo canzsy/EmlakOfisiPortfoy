@@ -18,10 +18,10 @@ namespace EmlakOfisiPortfoy
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            lstIlanlar.DataSource = null;
-            lstIlanlar.DataSource = Veri.Ilanlar;
-            if (Veri.Ilanlar.Count == 0)
+            Veri.DosyadanOku();
+            ListeyiYenile();
 
+            if (Veri.Ilanlar.Count == 0)
             {
                 MessageBox.Show("Henüz ilan eklenmemiş.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -29,9 +29,13 @@ namespace EmlakOfisiPortfoy
 
         private void btnYeni_Click(object sender, EventArgs e)
         {
-            Form3 frm = new Form3();
-            frm.ShowDialog();
+            Form3 frm = new Form3(this);
+            frm.Show();
+            this.Hide();
+        }
 
+        public void ListeyiYenile()
+        {
             lstIlanlar.DataSource = null;
             lstIlanlar.DataSource = Veri.Ilanlar;
         }
@@ -57,8 +61,9 @@ namespace EmlakOfisiPortfoy
             {
                 Veri.Ilanlar.Remove(secilenIlan);
 
-                lstIlanlar.DataSource = null;
-                lstIlanlar.DataSource = Veri.Ilanlar;
+                Veri.DosyayaKaydet();
+
+                ListeyiYenile();
                 rtbDetay.Clear();
 
                 MessageBox.Show("İlan silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -77,38 +82,29 @@ namespace EmlakOfisiPortfoy
 
         private void lstIlanlar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // 1. GÜVENLİK KONTROLÜ: Seçili ilan yoksa hata vermesini engeller (Hata Kontrolü Puanı)
             if (lstIlanlar.SelectedItem == null)
                 return;
 
-            // 2. SEÇİLEN İLANI ALMA
             Ilan secilen = (Ilan)lstIlanlar.SelectedItem;
 
-            // 3. DETAYLARI TEMİZLE VE YENİDEN YAZ
             rtbDetay.Clear();
 
-            // Başlığı büyük ve belirgin yapalım
             rtbDetay.AppendText("BAŞLIK: " + secilen.Baslik.ToUpper() + "\n");
             rtbDetay.AppendText("----------------------------------\n");
 
-            // Konum Bilgileri
             rtbDetay.AppendText("KONUM: " + secilen.Sehir + " / " + secilen.Ilce + "\n");
             rtbDetay.AppendText("DURUM: " + secilen.Durum + " " + secilen.Tur + "\n");
             rtbDetay.AppendText("ALAN: " + secilen.Metrekare + " m²\n");
 
-            // MANTIK KONTROLÜ: Eğer tür "Arsa" değilse kat ve oda bilgilerini göster
-            // Bu kısım hocanın "if-else mantığı" kriteri için çok kritiktir
             if (secilen.Tur != "Arsa")
             {
                 rtbDetay.AppendText("ODA SAYISI: " + secilen.OdaSayisi + "\n");
                 rtbDetay.AppendText("BULUNDUĞU KAT: " + secilen.BulunduguKat + "\n");
             }
 
-            // Adres Bilgisi
             rtbDetay.AppendText("AÇIK ADRES: " + secilen.Adres + "\n");
             rtbDetay.AppendText("----------------------------------\n");
 
-            // Fiyatı TL formatında gösterelim
             rtbDetay.AppendText("FİYAT: " + secilen.Fiyat.ToString("N2") + " TL");
         }
     }
