@@ -40,63 +40,74 @@
             // lstIlanlar
             // 
             lstIlanlar.FormattingEnabled = true;
-            lstIlanlar.Location = new Point(12, 102);
+            lstIlanlar.Location = new Point(16, 102);
             lstIlanlar.Name = "lstIlanlar";
-            lstIlanlar.Size = new Size(462, 344);
+            lstIlanlar.Size = new Size(383, 344);
             lstIlanlar.TabIndex = 0;
             lstIlanlar.SelectedIndexChanged += lstIlanlar_SelectedIndexChanged;
             // 
             // btnYeni
             // 
-            btnYeni.Location = new Point(222, 464);
+            btnYeni.BackColor = Color.Navy;
+            btnYeni.FlatStyle = FlatStyle.Flat;
+            btnYeni.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            btnYeni.ForeColor = Color.White;
+            btnYeni.Location = new Point(256, 482);
             btnYeni.Name = "btnYeni";
-            btnYeni.Size = new Size(120, 29);
+            btnYeni.Size = new Size(143, 36);
             btnYeni.TabIndex = 1;
             btnYeni.Text = "Yeni İlan Ekle";
-            btnYeni.UseVisualStyleBackColor = true;
+            btnYeni.UseVisualStyleBackColor = false;
             btnYeni.Click += btnYeni_Click;
             // 
             // btnSil
             // 
-            btnSil.Location = new Point(380, 464);
+            btnSil.BackColor = Color.Navy;
+            btnSil.FlatStyle = FlatStyle.Flat;
+            btnSil.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            btnSil.ForeColor = Color.White;
+            btnSil.Location = new Point(33, 482);
             btnSil.Name = "btnSil";
-            btnSil.Size = new Size(94, 29);
+            btnSil.Size = new Size(115, 36);
             btnSil.TabIndex = 2;
             btnSil.Text = "İlan Sil";
-            btnSil.UseVisualStyleBackColor = true;
+            btnSil.UseVisualStyleBackColor = false;
             btnSil.Click += btnSil_Click;
             // 
             // txtAra
             // 
             txtAra.AutoSize = true;
-            txtAra.Location = new Point(12, 26);
+            txtAra.Font = new Font("Georgia", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            txtAra.Location = new Point(16, 39);
             txtAra.Name = "txtAra";
-            txtAra.Size = new Size(60, 20);
+            txtAra.Size = new Size(104, 21);
             txtAra.TabIndex = 3;
-            txtAra.Text = "İlan Ara";
+            txtAra.Text = "İlan Ara : ";
             // 
             // txtArama
             // 
-            txtArama.Location = new Point(130, 26);
+            txtArama.Location = new Point(149, 33);
             txtArama.Name = "txtArama";
-            txtArama.Size = new Size(125, 27);
+            txtArama.Size = new Size(229, 27);
             txtArama.TabIndex = 4;
             txtArama.TextChanged += txtArama_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(556, 75);
+            label1.BackColor = Color.FloralWhite;
+            label1.Font = new Font("Georgia", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label1.Location = new Point(483, 68);
             label1.Name = "label1";
-            label1.Size = new Size(80, 20);
+            label1.Size = new Size(112, 21);
             label1.TabIndex = 5;
             label1.Text = "İlan Detayı";
             // 
             // rtbDetay
             // 
-            rtbDetay.Location = new Point(540, 102);
+            rtbDetay.Location = new Point(483, 102);
             rtbDetay.Name = "rtbDetay";
-            rtbDetay.Size = new Size(446, 242);
+            rtbDetay.Size = new Size(365, 344);
             rtbDetay.TabIndex = 6;
             rtbDetay.Text = "";
             // 
@@ -104,7 +115,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1045, 522);
+            BackColor = Color.FloralWhite;
+            ClientSize = new Size(917, 595);
             Controls.Add(rtbDetay);
             Controls.Add(label1);
             Controls.Add(txtArama);
@@ -113,6 +125,7 @@
             Controls.Add(btnYeni);
             Controls.Add(lstIlanlar);
             Name = "Form2";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "İlan Paneli";
             Load += Form2_Load;
             ResumeLayout(false);

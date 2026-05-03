@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace EmlakOfisiPortfoy
 {
@@ -52,6 +53,27 @@ namespace EmlakOfisiPortfoy
         private void txtKullanici_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            // Eğer şifre gizliyse (yani içindeki karakter '\0' değilse)
+            if (txtSifre.PasswordChar != '\0')
+            {
+                // Şifreyi görünür yap (karakteri sıfırla)
+                txtSifre.PasswordChar = '\0';
+
+                // İkonu 'açık göz' resmiyle değiştir
+                pictureBox1.Image = Properties.Resources.acik_goz;
+            }
+            else
+            {
+                // Şifreyi tekrar gizle (Koyu yuvarlak nokta işareti koy)
+                txtSifre.PasswordChar = '•';
+
+                // İkonu tekrar 'kapalı göz' resmiyle değiştir
+                pictureBox1.Image = Properties.Resources.kapali_goz;
+            }
         }
     }
 }

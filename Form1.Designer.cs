@@ -33,67 +33,94 @@
             label2 = new Label();
             txtSifre = new TextBox();
             btnGiris = new Button();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(57, 68);
+            label1.Location = new Point(62, 67);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(103, 20);
+            label1.Size = new Size(127, 21);
             label1.TabIndex = 0;
             label1.Text = "Kullanıcı Adı : ";
             label1.Click += label1_Click;
             // 
             // txtKullanici
             // 
-            txtKullanici.Location = new Point(196, 61);
+            txtKullanici.Location = new Point(246, 67);
+            txtKullanici.Margin = new Padding(4, 3, 4, 3);
             txtKullanici.Name = "txtKullanici";
-            txtKullanici.Size = new Size(125, 27);
+            txtKullanici.Size = new Size(191, 28);
             txtKullanici.TabIndex = 1;
             txtKullanici.TextChanged += txtKullanici_TextChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(57, 119);
+            label2.Location = new Point(62, 125);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(50, 20);
+            label2.Size = new Size(61, 21);
             label2.TabIndex = 2;
             label2.Text = "Şifre : ";
             label2.Click += label2_Click;
             // 
             // txtSifre
             // 
-            txtSifre.Location = new Point(196, 119);
+            txtSifre.Location = new Point(246, 125);
+            txtSifre.Margin = new Padding(4, 3, 4, 3);
             txtSifre.Name = "txtSifre";
-            txtSifre.Size = new Size(125, 27);
+            txtSifre.Size = new Size(194, 28);
             txtSifre.TabIndex = 3;
-            txtSifre.UseSystemPasswordChar = true;
             // 
             // btnGiris
             // 
-            btnGiris.Font = new Font("Microsoft Sans Serif", 8.25F);
-            btnGiris.Location = new Point(291, 226);
+            btnGiris.BackColor = Color.Navy;
+            btnGiris.FlatStyle = FlatStyle.Flat;
+            btnGiris.Font = new Font("Georgia", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            btnGiris.ForeColor = Color.White;
+            btnGiris.Location = new Point(270, 200);
+            btnGiris.Margin = new Padding(4, 3, 4, 3);
             btnGiris.Name = "btnGiris";
-            btnGiris.Size = new Size(94, 29);
+            btnGiris.Size = new Size(104, 38);
             btnGiris.TabIndex = 4;
             btnGiris.Text = "Giriş Yap";
-            btnGiris.UseVisualStyleBackColor = true;
+            btnGiris.UseVisualStyleBackColor = false;
             btnGiris.Click += btnGiris_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.White;
+            pictureBox1.Image = Properties.Resources.kapali_goz;
+            pictureBox1.Location = new Point(416, 129);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(21, 21);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 5;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // FormGiris
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(11F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.FloralWhite;
+            ClientSize = new Size(526, 266);
+            Controls.Add(pictureBox1);
             Controls.Add(btnGiris);
             Controls.Add(txtSifre);
             Controls.Add(label2);
             Controls.Add(txtKullanici);
             Controls.Add(label1);
+            Font = new Font("Georgia", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            Margin = new Padding(4, 3, 4, 3);
             Name = "FormGiris";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Danışman Girişi";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -105,5 +132,6 @@
         private Label label2;
         private TextBox txtSifre;
         private Button btnGiris;
+        private PictureBox pictureBox1;
     }
 }
