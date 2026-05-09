@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using System.Linq;
 
@@ -23,7 +19,12 @@ namespace EmlakOfisiPortfoy
 
             if (Veri.Ilanlar.Count == 0)
             {
-                MessageBox.Show("Henüz ilan eklenmemiş.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "Henüz ilan eklenmemiş.",
+                    "Bilgi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
             }
         }
 
@@ -44,7 +45,13 @@ namespace EmlakOfisiPortfoy
         {
             if (lstIlanlar.SelectedItem == null)
             {
-                MessageBox.Show("Lütfen silmek için bir ilan seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "Lütfen silmek için bir ilan seçin.",
+                    "Uyarı",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
                 return;
             }
 
@@ -64,9 +71,15 @@ namespace EmlakOfisiPortfoy
                 Veri.DosyayaKaydet();
 
                 ListeyiYenile();
+
                 rtbDetay.Clear();
 
-                MessageBox.Show("İlan silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "İlan silindi.",
+                    "Bilgi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
             }
         }
 
@@ -75,6 +88,7 @@ namespace EmlakOfisiPortfoy
             string aranan = txtArama.Text.ToLower();
 
             lstIlanlar.DataSource = null;
+
             lstIlanlar.DataSource = Veri.Ilanlar
                 .Where(x => x.Baslik.ToLower().Contains(aranan))
                 .ToList();
@@ -89,28 +103,94 @@ namespace EmlakOfisiPortfoy
 
             rtbDetay.Clear();
 
-            rtbDetay.AppendText("BAŞLIK: " + secilen.Baslik.ToUpper() + "\n");
+            rtbDetay.AppendText(
+                "BAŞLIK: " +
+                secilen.Baslik.ToUpper() +
+                "\n"
+            );
+
             rtbDetay.AppendText("----------------------------------\n");
 
-            rtbDetay.AppendText("KONUM: " + secilen.Sehir + " / " + secilen.Ilce + "\n");
-            rtbDetay.AppendText("DURUM: " + secilen.Durum + " " + secilen.Tur + "\n");
-            rtbDetay.AppendText("ALAN: " + secilen.Metrekare + " m²\n");
+            rtbDetay.AppendText(
+                "KONUM: " +
+                secilen.Sehir +
+                " / " +
+                secilen.Ilce +
+                "\n"
+            );
+
+            rtbDetay.AppendText(
+                "DURUM: " +
+                secilen.Durum +
+                " " +
+                secilen.Tur +
+                "\n"
+            );
+
+            rtbDetay.AppendText(
+                "ALAN: " +
+                secilen.Metrekare +
+                " m²\n"
+            );
 
             if (secilen.Tur != "Arsa")
             {
-                rtbDetay.AppendText("ODA SAYISI: " + secilen.OdaSayisi + "\n");
-                rtbDetay.AppendText("BULUNDUĞU KAT: " + secilen.BulunduguKat + "\n");
+                rtbDetay.AppendText(
+                    "ODA SAYISI: " +
+                    secilen.OdaSayisi +
+                    "\n"
+                );
+
+                rtbDetay.AppendText(
+                    "BULUNDUĞU KAT: " +
+                    secilen.BulunduguKat +
+                    "\n"
+                );
+
+                rtbDetay.AppendText(
+                    "BİNA YAŞI: " +
+                    secilen.BinaYasi +
+                    "\n"
+                );
             }
 
-            rtbDetay.AppendText("AÇIK ADRES: " + secilen.Adres + "\n");
+            rtbDetay.AppendText(
+                "AÇIK ADRES: " +
+                secilen.Adres +
+                "\n"
+            );
+
             rtbDetay.AppendText("----------------------------------\n");
 
-            rtbDetay.AppendText("FİYAT: " + secilen.Fiyat.ToString("N2") + " TL");
+            rtbDetay.AppendText(
+                "İLETİŞİM KİŞİSİ: " +
+                secilen.AdSoyad +
+                "\n"
+            );
+
+            rtbDetay.AppendText(
+                "TELEFON: " +
+                secilen.Telefon +
+                "\n"
+            );
+
+            rtbDetay.AppendText(
+                "İLETİŞİM ADRESİ: " +
+                secilen.IletisimAdres +
+                "\n"
+            );
+
+            rtbDetay.AppendText("----------------------------------\n");
+
+            rtbDetay.AppendText(
+                "FİYAT: " +
+                secilen.Fiyat.ToString("N2") +
+                " TL"
+            );
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Kullanıcıya onay sorusu soruluyor
             DialogResult sonuc = MessageBox.Show(
                 "Sistemden çıkış yapmak istediğinize emin misiniz?",
                 "Çıkış Onayı",
@@ -118,16 +198,10 @@ namespace EmlakOfisiPortfoy
                 MessageBoxIcon.Question
             );
 
-            // Eğer "Evet" seçilirse
             if (sonuc == DialogResult.Yes)
             {
-                // Tüm uygulamayı tamamen kapatır
                 Application.Exit();
-
-                   
-                  
             }
-            // "Hayır" seçilirse hiçbir şey yapılmaz ve forma geri dönülür.
         }
     }
 }

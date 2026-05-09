@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace EmlakOfisiPortfoy
@@ -32,46 +28,115 @@ namespace EmlakOfisiPortfoy
 
         private void btnKaydet_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtBaslik.Text) || cmbSehir.SelectedIndex == -1)
+            if (
+                string.IsNullOrWhiteSpace(txtBaslik.Text) ||
+                cmbSehir.SelectedIndex == -1 ||
+                string.IsNullOrWhiteSpace(txtAdSoyad.Text) ||
+                string.IsNullOrWhiteSpace(
+                    msktxtNumara.Text
+                    .Replace("(", "")
+                    .Replace(")", "")
+                    .Replace("-", "")
+                    .Replace("_", "")
+                    .Trim()
+                ) ||
+                string.IsNullOrWhiteSpace(rtbIletisimAdres.Text)
+            )
             {
-                MessageBox.Show("Lütfen diğer alanları boş bırakmayın!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "Lütfen ilan ve iletişim bilgilerini eksiksiz doldurun!",
+                    "Hata",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                tabControl1.SelectedTab = tpIletisim;
+
                 return;
             }
-
-            Ilan yeni = new Ilan();
 
             decimal fiyat;
 
             if (!decimal.TryParse(txtFiyat.Text, out fiyat))
             {
-                MessageBox.Show("Lütfen geçerli bir fiyat girin!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Lütfen geçerli bir fiyat girin!",
+                    "Hata",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+
                 return;
             }
 
+            Ilan yeni = new Ilan();
+
             yeni.Baslik = txtBaslik.Text;
             yeni.Tur = cmbTur.Text;
+
             yeni.Fiyat = fiyat;
+
             yeni.Metrekare = (int)numMetrekare.Value;
+
             yeni.Sehir = cmbSehir.Text;
             yeni.Ilce = cmbIlce.Text;
+
             yeni.Adres = rtbAdres.Text;
 
-            yeni.BulunduguKat = cmbTur.Text == "Arsa" ? "Yok" : numKat.Value.ToString();
-            yeni.OdaSayisi = cmbTur.Text == "Arsa" ? "Yok" : cmbOda.Text;
-            yeni.Durum = rbSatilik.Checked ? "Satılık" : "Kiralık";
+            yeni.BinaYasi = txtBinaYasi.Text;
+
+            yeni.AdSoyad = txtAdSoyad.Text;
+            yeni.Telefon = msktxtNumara.Text;
+            yeni.IletisimAdres = rtbIletisimAdres.Text;
+
+            yeni.BulunduguKat =
+                cmbTur.Text == "Arsa"
+                ? "Yok"
+                : numKat.Value.ToString();
+
+            yeni.OdaSayisi =
+                cmbTur.Text == "Arsa"
+                ? "Yok"
+                : cmbOda.Text;
+
+            yeni.Durum =
+                rbSatilik.Checked
+                ? "Satılık"
+                : "Kiralık";
 
             Veri.Ilanlar.Add(yeni);
 
-            // 🔥 TXT DOSYASINA KAYDET (EKLEDİM)
             Veri.DosyayaKaydet();
 
-            MessageBox.Show("İlan eklendi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(
+                "İlan başarıyla eklendi!",
+                "Bilgi",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
 
             txtBaslik.Clear();
             txtFiyat.Clear();
-            cmbTur.SelectedIndex = -1;
-            cmbOda.SelectedIndex = -1;
+            txtBinaYasi.Clear();
+
+            txtAdSoyad.Clear();
+            msktxtNumara.Clear();
+
+            rtbIletisimAdres.Clear();
+
+            cmbTur.SelectedIndex = 0;
+            cmbOda.SelectedIndex = 0;
+
+            cmbSehir.SelectedIndex = -1;
+
+            cmbIlce.Items.Clear();
+            cmbIlce.Text = "";
+
+            rtbAdres.Clear();
+
             numMetrekare.Value = 1;
+            numKat.Value = 0;
+
             rbSatilik.Checked = true;
 
             if (oncekiForm != null)
@@ -95,6 +160,9 @@ namespace EmlakOfisiPortfoy
 
                 label9.Visible = false;
                 numKat.Visible = false;
+
+                lblBinaYasi.Visible = false;
+                txtBinaYasi.Visible = false;
             }
             else
             {
@@ -103,68 +171,81 @@ namespace EmlakOfisiPortfoy
 
                 label9.Visible = true;
                 numKat.Visible = true;
+
+                lblBinaYasi.Visible = true;
+                txtBinaYasi.Visible = true;
             }
         }
 
         private void cmbSehir_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbSehir.SelectedItem == null) return;
+            if (cmbSehir.SelectedItem == null)
+                return;
 
             cmbIlce.Items.Clear();
             cmbIlce.Text = "";
 
-            string secilenSehir = cmbSehir.SelectedItem?.ToString() ?? "";
+            string secilenSehir =
+                cmbSehir.SelectedItem?.ToString() ?? "";
 
             switch (secilenSehir)
             {
                 case "Mersin":
-                    cmbIlce.Items.AddRange(new string[] { "Yenişehir", "Mezitli", "Toroslar", "Tarsus", "Erdemli", "Silifke" });
+                    cmbIlce.Items.AddRange(new string[]
+                    {
+                        "Yenişehir",
+                        "Mezitli",
+                        "Toroslar",
+                        "Tarsus",
+                        "Erdemli",
+                        "Silifke"
+                    });
                     break;
+
                 case "İstanbul (Avrupa)":
-                    cmbIlce.Items.AddRange(new string[] { "Beşiktaş", "Şişli", "Bakırköy", "Sarıyer", "Arnavutköy" });
+                    cmbIlce.Items.AddRange(new string[]
+                    {
+                        "Beşiktaş",
+                        "Şişli",
+                        "Bakırköy",
+                        "Sarıyer",
+                        "Arnavutköy"
+                    });
                     break;
+
                 case "İstanbul (Anadolu)":
-                    cmbIlce.Items.AddRange(new string[] { "Kadıköy", "Üsküdar", "Ataşehir", "Beykoz", "Maltepe" });
+                    cmbIlce.Items.AddRange(new string[]
+                    {
+                        "Kadıköy",
+                        "Üsküdar",
+                        "Ataşehir",
+                        "Beykoz",
+                        "Maltepe"
+                    });
                     break;
+
                 case "Ankara":
-                    cmbIlce.Items.AddRange(new string[] { "Çankaya", "Keçiören", "Yenimahalle", "Etimesgut", "Mamak" });
+                    cmbIlce.Items.AddRange(new string[]
+                    {
+                        "Çankaya",
+                        "Keçiören",
+                        "Yenimahalle",
+                        "Etimesgut",
+                        "Mamak"
+                    });
                     break;
+
                 case "İzmir":
-                    cmbIlce.Items.AddRange(new string[] { "Konak", "Karşıyaka", "Bornova", "Buca", "Çeşme" });
+                    cmbIlce.Items.AddRange(new string[]
+                    {
+                        "Konak",
+                        "Karşıyaka",
+                        "Bornova",
+                        "Buca",
+                        "Çeşme"
+                    });
                     break;
-                case "Bursa":
-                    cmbIlce.Items.AddRange(new string[] { "Osmangazi", "Nilüfer", "Yıldırım", "İnegöl", "Mudanya" });
-                    break;
-                case "Konya":
-                    cmbIlce.Items.AddRange(new string[] { "Selçuklu", "Meram", "Karatay", "Ereğli", "Akşehir" });
-                    break;
-                case "Antalya":
-                    cmbIlce.Items.AddRange(new string[] { "Muratpaşa", "Konyaaltı", "Kepez", "Alanya", "Manavgat" });
-                    break;
-                case "Adana":
-                    cmbIlce.Items.AddRange(new string[] { "Seyhan", "Çukurova", "Sarıçam", "Yüreğir", "Kozan" });
-                    break;
-                case "Gaziantep":
-                    cmbIlce.Items.AddRange(new string[] { "Şahinbey", "Şehitkamil", "Nizip", "Oğuzeli" });
-                    break;
-                case "Kocaeli":
-                    cmbIlce.Items.AddRange(new string[] { "İzmit", "Gebze", "Darica", "Kartepe", "Körfez" });
-                    break;
-                case "Eskişehir":
-                    cmbIlce.Items.AddRange(new string[] { "Odunpazarı", "Tepebaşı", "Çifteler" });
-                    break;
-                case "Samsun":
-                    cmbIlce.Items.AddRange(new string[] { "Atakum", "İlkadım", "Canik", "Bafra", "Çarşamba" });
-                    break;
-                case "Trabzon":
-                    cmbIlce.Items.AddRange(new string[] { "Ortahisar", "Akçaabat", "Yomra", "Beşikdüzü" });
-                    break;
-                case "Kayseri":
-                    cmbIlce.Items.AddRange(new string[] { "Melikgazi", "Kocasinan", "Talas", "Develi" });
-                    break;
-                case "Şanlıurfa":
-                    cmbIlce.Items.AddRange(new string[] { "Akçakale", "Birecik", "Ceylanpınar", "Eyyübiye", "Karaköprü", "Viranşehir" });
-                    break;
+
                 default:
                     cmbIlce.Items.Add("Merkez");
                     break;
@@ -181,8 +262,40 @@ namespace EmlakOfisiPortfoy
             if (oncekiForm != null)
             {
                 oncekiForm.Show();
-                this.Close();
             }
+
+            this.Close();
+        }
+
+        private void txtBinaYas_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBinaYas_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (
+                !char.IsControl(e.KeyChar) &&
+                !char.IsDigit(e.KeyChar)
+            )
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void msktxtNumara_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void tpIlanBilgileri_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -35,6 +35,8 @@
             label9 = new Label();
             tabControl1 = new TabControl();
             tpIlanBilgileri = new TabPage();
+            txtBinaYasi = new TextBox();
+            lblBinaYasi = new Label();
             tpKonum = new TabPage();
             rtbAdres = new RichTextBox();
             label6 = new Label();
@@ -42,6 +44,13 @@
             cmbIlce = new ComboBox();
             label7 = new Label();
             cmbSehir = new ComboBox();
+            tpIletisim = new TabPage();
+            msktxtNumara = new MaskedTextBox();
+            rtbIletisimAdres = new RichTextBox();
+            txtAdSoyad = new TextBox();
+            label13 = new Label();
+            label12 = new Label();
+            label11 = new Label();
             button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)numMetrekare).BeginInit();
             groupBox1.SuspendLayout();
@@ -49,6 +58,7 @@
             tabControl1.SuspendLayout();
             tpIlanBilgileri.SuspendLayout();
             tpKonum.SuspendLayout();
+            tpIletisim.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -234,6 +244,7 @@
             // 
             tabControl1.Controls.Add(tpIlanBilgileri);
             tabControl1.Controls.Add(tpKonum);
+            tabControl1.Controls.Add(tpIletisim);
             tabControl1.Location = new Point(32, 38);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -242,6 +253,8 @@
             // 
             // tpIlanBilgileri
             // 
+            tpIlanBilgileri.Controls.Add(txtBinaYasi);
+            tpIlanBilgileri.Controls.Add(lblBinaYasi);
             tpIlanBilgileri.Controls.Add(label1);
             tpIlanBilgileri.Controls.Add(label9);
             tpIlanBilgileri.Controls.Add(txtBaslik);
@@ -262,6 +275,24 @@
             tpIlanBilgileri.TabIndex = 0;
             tpIlanBilgileri.Text = "İlan Bilgileri";
             tpIlanBilgileri.UseVisualStyleBackColor = true;
+            tpIlanBilgileri.Click += tpIlanBilgileri_Click;
+            // 
+            // txtBinaYasi
+            // 
+            txtBinaYasi.Location = new Point(177, 481);
+            txtBinaYasi.Name = "txtBinaYasi";
+            txtBinaYasi.Size = new Size(192, 27);
+            txtBinaYasi.TabIndex = 15;
+            txtBinaYasi.TextChanged += txtBinaYas_TextChanged;
+            // 
+            // lblBinaYasi
+            // 
+            lblBinaYasi.AutoSize = true;
+            lblBinaYasi.Location = new Point(19, 481);
+            lblBinaYasi.Name = "lblBinaYasi";
+            lblBinaYasi.Size = new Size(92, 20);
+            lblBinaYasi.TabIndex = 14;
+            lblBinaYasi.Text = "Bina Yaşı : ";
             // 
             // tpKonum
             // 
@@ -342,6 +373,73 @@
             cmbSehir.TabIndex = 0;
             cmbSehir.SelectedIndexChanged += cmbSehir_SelectedIndexChanged;
             // 
+            // tpIletisim
+            // 
+            tpIletisim.Controls.Add(msktxtNumara);
+            tpIletisim.Controls.Add(rtbIletisimAdres);
+            tpIletisim.Controls.Add(txtAdSoyad);
+            tpIletisim.Controls.Add(label13);
+            tpIletisim.Controls.Add(label12);
+            tpIletisim.Controls.Add(label11);
+            tpIletisim.Location = new Point(4, 29);
+            tpIletisim.Name = "tpIletisim";
+            tpIletisim.Size = new Size(721, 524);
+            tpIletisim.TabIndex = 2;
+            tpIletisim.Text = "İletişim Bilgileri";
+            tpIletisim.UseVisualStyleBackColor = true;
+            // 
+            // msktxtNumara
+            // 
+            msktxtNumara.Location = new Point(216, 96);
+            msktxtNumara.Mask = "(999) 000-0000";
+            msktxtNumara.Name = "msktxtNumara";
+            msktxtNumara.Size = new Size(179, 27);
+            msktxtNumara.TabIndex = 6;
+            msktxtNumara.MaskInputRejected += msktxtNumara_MaskInputRejected;
+            // 
+            // rtbIletisimAdres
+            // 
+            rtbIletisimAdres.Location = new Point(162, 163);
+            rtbIletisimAdres.Name = "rtbIletisimAdres";
+            rtbIletisimAdres.Size = new Size(233, 120);
+            rtbIletisimAdres.TabIndex = 5;
+            rtbIletisimAdres.Text = "";
+            // 
+            // txtAdSoyad
+            // 
+            txtAdSoyad.Location = new Point(216, 48);
+            txtAdSoyad.Name = "txtAdSoyad";
+            txtAdSoyad.Size = new Size(179, 27);
+            txtAdSoyad.TabIndex = 3;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(31, 166);
+            label13.Name = "label13";
+            label13.Size = new Size(65, 20);
+            label13.TabIndex = 2;
+            label13.Text = "Adres : ";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(31, 96);
+            label12.Name = "label12";
+            label12.Size = new Size(158, 20);
+            label12.TabIndex = 1;
+            label12.Text = "Telefon Numarası : ";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(31, 48);
+            label11.Name = "label11";
+            label11.Size = new Size(113, 20);
+            label11.TabIndex = 0;
+            label11.Text = "Adı - Soyadı : ";
+            label11.Click += label11_Click;
+            // 
             // button1
             // 
             button1.BackColor = Color.Navy;
@@ -379,6 +477,8 @@
             tpIlanBilgileri.PerformLayout();
             tpKonum.ResumeLayout(false);
             tpKonum.PerformLayout();
+            tpIletisim.ResumeLayout(false);
+            tpIletisim.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -410,5 +510,15 @@
         private ComboBox cmbIlce;
         private ComboBox cmbSehir;
         private Button button1;
+        private TextBox txtBinaYasi;
+        private Label label10;
+        private TabPage tpIletisim;
+        private Label label12;
+        private Label label11;
+        private Label label13;
+        private MaskedTextBox msktxtNumara;
+        private RichTextBox rtbIletisimAdres;
+        private TextBox txtAdSoyad;
+        private Label lblBinaYasi;
     }
 }

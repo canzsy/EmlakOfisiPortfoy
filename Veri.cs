@@ -25,7 +25,11 @@ namespace EmlakOfisiPortfoy
                         ilan.Adres + "|" +
                         ilan.BulunduguKat + "|" +
                         ilan.OdaSayisi + "|" +
-                        ilan.Durum
+                        ilan.Durum + "|" +
+                        ilan.BinaYasi + "|" +
+                        ilan.AdSoyad + "|" +
+                        ilan.Telefon + "|" +
+                        ilan.IletisimAdres
                     );
                 }
             }
@@ -44,7 +48,7 @@ namespace EmlakOfisiPortfoy
             {
                 string[] parcalar = satir.Split('|');
 
-                if (parcalar.Length == 10)
+                if (parcalar.Length == 14)
                 {
                     Ilan ilan = new Ilan();
 
@@ -58,6 +62,10 @@ namespace EmlakOfisiPortfoy
                     ilan.BulunduguKat = parcalar[7];
                     ilan.OdaSayisi = parcalar[8];
                     ilan.Durum = parcalar[9];
+                    ilan.BinaYasi = parcalar[10];
+                    ilan.AdSoyad = parcalar[11];
+                    ilan.Telefon = parcalar[12];
+                    ilan.IletisimAdres = parcalar[13];
 
                     Ilanlar.Add(ilan);
                 }
