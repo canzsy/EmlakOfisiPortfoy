@@ -35,6 +35,7 @@
             txtArama = new TextBox();
             label1 = new Label();
             rtbDetay = new RichTextBox();
+            button1 = new Button();
             SuspendLayout();
             // 
             // lstIlanlar
@@ -111,12 +112,27 @@
             rtbDetay.TabIndex = 6;
             rtbDetay.Text = "";
             // 
+            // button1
+            // 
+            button1.BackColor = Color.Navy;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(684, 482);
+            button1.Name = "button1";
+            button1.Size = new Size(164, 36);
+            button1.TabIndex = 7;
+            button1.Text = "Çıkış Yap";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FloralWhite;
             ClientSize = new Size(917, 595);
+            Controls.Add(button1);
             Controls.Add(rtbDetay);
             Controls.Add(label1);
             Controls.Add(txtArama);
@@ -141,5 +157,6 @@
         private TextBox txtArama;
         private Label label1;
         private RichTextBox rtbDetay;
+        private Button button1;
     }
 }

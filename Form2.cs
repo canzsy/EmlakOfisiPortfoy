@@ -107,5 +107,27 @@ namespace EmlakOfisiPortfoy
 
             rtbDetay.AppendText("FİYAT: " + secilen.Fiyat.ToString("N2") + " TL");
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Kullanıcıya onay sorusu soruluyor
+            DialogResult sonuc = MessageBox.Show(
+                "Sistemden çıkış yapmak istediğinize emin misiniz?",
+                "Çıkış Onayı",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            // Eğer "Evet" seçilirse
+            if (sonuc == DialogResult.Yes)
+            {
+                // Tüm uygulamayı tamamen kapatır
+                Application.Exit();
+
+                   
+                  
+            }
+            // "Hayır" seçilirse hiçbir şey yapılmaz ve forma geri dönülür.
+        }
     }
 }

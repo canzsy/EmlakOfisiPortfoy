@@ -78,6 +78,7 @@
             txtSifre.Name = "txtSifre";
             txtSifre.Size = new Size(194, 28);
             txtSifre.TabIndex = 3;
+            txtSifre.TextChanged += txtSifre_TextChanged;
             // 
             // btnGiris
             // 
